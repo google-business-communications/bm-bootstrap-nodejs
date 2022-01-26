@@ -1,0 +1,34 @@
+{
+  "name": "bm-bootstrap",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": "^16.0.0"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "DEBUG=bm-bootstrap DEBUG_DEPTH=20 node ./src/app.js",
+    "local": "DEBUG=bm-bootstrap DEBUG_DEPTH=20 PORT=$npm_package_config_port nodemon --watch src ./src/app.js",
+    "serve": "ngrok http $npm_package_config_port",
+    "QUALITY______________________________________________________________": "",
+    "lint": "eslint --fix 'src/**/*.js' --quiet",
+    "format": "prettier --write 'src/**/*.{js,json}'"
+  },
+  "dependencies": {
+    "businessmessages": "1.0.3",
+    "debug": "4.3.3",
+    "googleapis": "92.0.0",
+    "uuid": "8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "8.7.0",
+    "eslint-config-google": "0.14.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "ngrok": "4.3.0",
+    "nodemon": "2.0.15",
+    "prettier": "2.5.1"
+  },
+  "config": {
+    "port": "3000"
+  }
+}
