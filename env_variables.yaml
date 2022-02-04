@@ -12,21 +12,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START app_yaml]
-runtime: nodejs
-env: flex
-
-includes:
-  - env_variables.yaml
-
-# This sample incurs costs to run on the App Engine flexible environment.
-# The settings below are to reduce costs during testing and are not appropriate
-# for production use. For more information, see:
-# https://cloud.google.com/appengine/docs/flexible/nodejs/configuring-your-app-with-app-yaml
-manual_scaling:
-  instances: 1
-resources:
-  cpu: 1
-  memory_gb: 0.5
-  disk_size_gb: 10
-# [END app_yaml]
+env_variables:
+  PARTNER_KEY: 'ADD_YOUR_PARTNER_KEY_HERE'

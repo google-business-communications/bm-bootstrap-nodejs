@@ -1,4 +1,4 @@
-// Copyright 2021 Google LLC
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ export async function initCredentials() {
 
   // Configure a JWT auth client
   const authClient = new google.auth.JWT({
-    keyFile: './service_account_key.json',
+    keyFile: './bm-agent-service-account-credentials.json',
     scopes: ['https://www.googleapis.com/auth/businessmessages'],
   });
 

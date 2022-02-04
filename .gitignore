@@ -1,0 +1,7 @@
+.git
+
+# Node.js dependencies:
+node_modules/
+
+# Environment variables and secrets:
+bm-agent-service-account-credentials.json

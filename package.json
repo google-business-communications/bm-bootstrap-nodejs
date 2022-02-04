@@ -10,6 +10,7 @@
     "start": "DEBUG=bm-bootstrap DEBUG_DEPTH=20 node ./src/app.js",
     "local": "DEBUG=bm-bootstrap DEBUG_DEPTH=20 PORT=$npm_package_config_port nodemon --watch src ./src/app.js",
     "serve": "ngrok http $npm_package_config_port",
+    "test-url": "./scripts/test-url",
     "QUALITY______________________________________________________________": "",
     "lint": "eslint --fix 'src/**/*.js' --quiet",
     "format": "prettier --write 'src/**/*.{js,json}'"
