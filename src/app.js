@@ -38,17 +38,19 @@ const server = http.createServer(async (req, res) => {
 
   // Set the request route.
   if (req.url === '/' && req.method === 'POST') {
+    let responseBody;
+
     try {
-      await reply(req);
+      responseBody = await reply(req);
     } catch (err) {
-      debug('ERROR DOWNSTREAM REPLY() ^^^^^^^');
+      debug(err);
     }
 
     // Set the status code and content-type
-    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
 
     // Set the response body.
-    res.write(JSON.stringify({ ok: true }));
+    res.write(responseBody);
 
     // End the response.
     res.end();

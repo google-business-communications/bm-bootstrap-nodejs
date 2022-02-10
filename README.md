@@ -123,6 +123,28 @@ Before you continue, add `env_variables.yaml` to the `.gitignore` file.
 1.  On your mobile device, open the email and open a test URL to start a conversation
     with your agent.
 
+## Configure agent-level webhook
+
+This sample supports agent-level webhooks, but make sure to validate incoming
+webhook change requests by configuring the `CLIENT_TOKEN` environment variable.
+
+To set the client token in your local development environment,
+
+1. Set the `process.env.CLIENT_TOKEN` variable:
+
+   ```bash
+   CLIENT_TOKEN=ADD_YOUR_CLIENT_TOKEN_HERE
+   ```
+
+1. Restart the service.
+
+To set your client token in Google App Engine,
+
+1.  Open `env_variables.yaml`.
+1.  Update the `CLIENT_TOKEN` variable with your client token.
+1.  Save `env_variables.yml`.
+1.  Re-deploy to Google App Engine.
+
 ## Security
 
 Use your partner key to validate that all requests are coming from the Business Messages API.

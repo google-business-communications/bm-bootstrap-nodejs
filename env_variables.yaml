@@ -13,4 +13,5 @@
 # limitations under the License.
 
 env_variables:
-  PARTNER_KEY: 'ADD_YOUR_PARTNER_KEY_HERE'
+  PARTNER_KEY: '' # Add your partner key within the single quotes
+  CLIENT_TOKEN: '' # Add your client token within the single quotes

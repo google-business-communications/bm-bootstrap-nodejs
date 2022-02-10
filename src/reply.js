@@ -32,6 +32,7 @@ import {
   sendHumanCatchingUpMessage,
 } from './api/messages.js';
 import { sendSurvey } from './api/survey.js';
+import { sendReadReceipt } from './api/receipt.js';
 
 /**
  * Choose how to respond to an incoming request body.
@@ -45,16 +46,34 @@ export async function reply(req) {
   debug('# Request Body:');
   debug(body);
 
+  if (body.clientToken && body.secret) {
+    debug('# Webhook setup');
+    // Confirm that body.clientToken matches the clientToken in the
+    // Business Communications console.
+    // Documentation: https://developers.google.com/business-communications/business-messages/guides/how-to/agents/?method=console#webhook
+    if (!process.env.CLIENT_TOKEN || process.env.CLIENT_TOKEN === body.clientToken) {
+      return body.secret; // Verification succeeded!
+    } else {
+      return ''; // Verification failed!
+    }
+  }
+
   if (body.message || body.suggestionResponse) {
     let value;
+    let messageId;
     if (body.message) {
       debug('# Inbound: Message');
       value = body.message.text.trim().toLowerCase();
+      messageId = body.message.messageId;
     } else {
       debug('# Inbound: Suggestion');
       value = body.suggestionResponse.postbackData.trim().toLowerCase();
+      messageId = body.suggestionResponse.message.split('/')[3];
     }
     debug('# Value: ' + value);
+
+    // Send a "read receipt" to the user.
+    await sendReadReceipt(conversationId, messageId);
 
     switch (value) {
       case CMD_RICH_TEXT:
@@ -132,4 +151,6 @@ export async function reply(req) {
       await representativeLeft(conversationId);
     }
   }
+
+  return 'OK';
 }

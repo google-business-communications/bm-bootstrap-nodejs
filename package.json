@@ -16,7 +16,7 @@
     "format": "prettier --write 'src/**/*.{js,json}'"
   },
   "dependencies": {
-    "businessmessages": "1.0.3",
+    "businessmessages": "github:google-business-communications/nodejs-businessmessages#d6b0d867693e2ff3cd795442c024eb7fb15c5338",
     "debug": "4.3.3",
     "googleapis": "92.0.0",
     "uuid": "8.3.2"
