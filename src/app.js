@@ -18,26 +18,26 @@ import { reply } from './reply.js';
 import { validateRequest } from './utils/validation.js';
 
 const server = http.createServer(async (req, res) => {
-  // Computing the `rawBody` and `body` of the request.
-  const buffers = [];
-  for await (const chunk of req) {
-    buffers.push(chunk);
-  }
-  req.rawBody = Buffer.concat(buffers).toString();
-  req.body = JSON.parse(req.rawBody);
-
-  // Fail fast if the request is not coming from the Business Messages API.
-  const isValidRequest = validateRequest(
-    req.rawBody,
-    req.headers['x-goog-signature']
-  );
-  if (!isValidRequest) {
-    res.writeHead(401);
-    return res.end();
-  }
-
   // Set the request route.
   if (req.url === '/' && req.method === 'POST') {
+    // Computing the `rawBody` and `body` of the request.
+    const buffers = [];
+    for await (const chunk of req) {
+      buffers.push(chunk);
+    }
+    req.rawBody = Buffer.concat(buffers).toString();
+    req.body = JSON.parse(req.rawBody);
+
+    // Fail fast if the request is not coming from the Business Messages API.
+    const isValidRequest = validateRequest(
+      req.rawBody,
+      req.headers['x-goog-signature']
+    );
+    if (!isValidRequest) {
+      res.writeHead(401);
+      return res.end();
+    }
+
     let responseBody;
 
     try {
